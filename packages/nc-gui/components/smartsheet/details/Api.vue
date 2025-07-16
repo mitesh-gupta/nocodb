@@ -45,11 +45,6 @@ const langs = [
     icon: iconMap.langNode,
   },
   {
-    name: 'NocoDB-SDK',
-    clients: ['javascript', 'node'],
-    icon: iconMap.langNocodbSdk,
-  },
-  {
     name: 'php',
     icon: iconMap.langPhp,
   },
@@ -158,28 +153,6 @@ const onCopyToClipboard = async () => {
 watch(activeLang, (newLang) => {
   selectedClient.value = newLang?.clients?.[0]
 })
-
-const supportedDocs = [
-  {
-    title: 'Data APIs',
-    href: 'https://nocodb.com/apis/v2/data',
-  },
-  {
-    title: 'Meta APIs',
-    href: 'https://nocodb.com/apis/v2/meta',
-  },
-  {
-    title: 'Create API Token',
-    href: 'https://nocodb.com/docs/product-docs/account-settings/api-tokens#create-api-token',
-  },
-  {
-    title: 'Swagger',
-    href: 'https://nocodb.com/docs/product-docs/bases/actions-on-base#rest-apis',
-  },
-] as {
-  title: string
-  href: string
-}[]
 </script>
 
 <template>
@@ -215,32 +188,6 @@ const supportedDocs = [
             {{ item.name }}
           </div>
         </NcMenuItem>
-
-        <NcDivider class="!my-3" />
-
-        <div class="flex flex-col gap-1">
-          <div
-            class="p-2 text-xs text-gray-500 uppercase font-semibold"
-            :style="{
-              letterSpacing: '0.3px',
-            }"
-          >
-            {{ $t('labels.documentation') }}
-          </div>
-
-          <div v-for="(doc, idx) of supportedDocs" :key="idx" class="flex items-center gap-2 px-2 h-7">
-            <GeneralIcon icon="bookOpen" class="flex-none w-4 h-4 text-gray-600" />
-
-            <a
-              :href="doc.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="!text-gray-700 text-small leading-[18px] !no-underline !hover:underline"
-            >
-              {{ doc.title }}
-            </a>
-          </div>
-        </div>
       </NcMenu>
       <div class="w-[calc(100%_-_264px)] flex flex-col gap-6 h-full max-h-full">
         <div class="nc-api-clents-tab-wrapper h-[calc(100%_-_56px)] flex flex-col mt-2">

@@ -83,13 +83,6 @@ watch(isWebhookModal, (newVal) => {
   <a-form-item>
     <div class="mb-2 text-gray-800 text-[13px] flex justify-between">
       {{ $t('labels.webhook') }}
-      <a
-        class="font-medium"
-        href="https://nocodb.com/docs/product-docs/fields/field-types/custom-types/button#create-a-button-field"
-        target="_blank"
-      >
-        Docs
-      </a>
     </div>
     <div class="flex rounded-lg">
       <NcDropdown v-model:visible="isWebHookSelectionDropdownOpen" :trigger="['click']">

@@ -446,25 +446,6 @@ const toggleSamplePayload = () => {
   })
 }
 
-const supportedDocs = [
-  {
-    title: 'Getting started',
-    href: 'https://nocodb.com/docs/product-docs/automation/webhook/create-webhook',
-  },
-  {
-    title: 'Create webhook',
-    href: 'https://nocodb.com/docs/product-docs/automation/webhook',
-  },
-  {
-    title: 'Custom payload',
-    href: 'https://nocodb.com/docs/product-docs/automation/webhook/create-webhook#webhook-with-custom-payload-',
-  },
-  {
-    title: 'Trigger on condition',
-    href: 'https://nocodb.com/docs/product-docs/automation/webhook/create-webhook#webhook-with-conditions',
-  },
-]
-
 watch(
   () => hookRef?.operation,
   async () => {
@@ -1015,26 +996,8 @@ const toggleIncludeUser = async () => {
         </div>
       </div>
 
-      <div class="h-full bg-gray-50 border-l-1 w-80 p-5 rounded-br-2xl border-gray-200">
-        <div class="w-full flex flex-col gap-3">
-          <h2 class="text-sm text-gray-700 font-semibold !my-0">{{ $t('labels.supportDocs') }}</h2>
-          <div>
-            <div v-for="(doc, idx) of supportedDocs" :key="idx" class="flex items-center gap-1">
-              <div class="h-7 w-7 flex items-center justify-center">
-                <GeneralIcon icon="bookOpen" class="flex-none w-4 h-4 text-gray-500" />
-              </div>
-              <NuxtLink
-                :href="doc.href"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="!text-gray-500 text-sm !no-underline !hover:underline"
-              >
-                {{ doc.title }}
-              </NuxtLink>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- <div class="h-full bg-gray-50 border-l-1 w-80 p-5 rounded-br-2xl border-gray-200">
+      </div> -->
     </div>
     <div v-else-if="activeTab === HookTab.Log" class="h-[calc(100%_-_66px)]">
       <WebhookCallLog :hook="hook" />

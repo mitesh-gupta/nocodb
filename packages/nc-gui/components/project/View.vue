@@ -231,7 +231,7 @@ onMounted(() => {
                   'bg-gray-50': projectPageTab !== 'collaborator',
                 }"
               >
-                {{ userCount }}
+                {{ userCount - 1 }}
               </div>
             </div>
           </template>

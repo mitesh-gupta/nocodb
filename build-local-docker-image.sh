@@ -20,7 +20,7 @@ function stop_and_remove_container() {
 
 function remove_image() {
     # Remove the existing image
-    docker rmi miteshgupta/coriva:CRMv1.0.2 >/dev/null 2>&1
+    docker rmi miteshgupta/coriva:CRMv1.0.3 >/dev/null 2>&1
 }
 
 function install_dependencies() {
@@ -46,7 +46,7 @@ function package_nocodb() {
 function build_image() {
     # build docker
     cd ${SCRIPT_DIR}
-    docker build --no-cache . -f packages/nocodb/Dockerfile.local -t miteshgupta/coriva:CRMv1.0.2 || ERROR="build_image failed"
+    docker build --no-cache . -f packages/nocodb/Dockerfile.local -t miteshgupta/coriva:CRMv1.0.3 || ERROR="build_image failed"
 }
 
 function log_message() {
@@ -57,7 +57,7 @@ function log_message() {
         exit 1
     else
         echo 'docker image with tag "miteshgupta/coriva" built sussessfully. Use below sample command to run the container'
-        echo 'docker run -d -p 3333:8080 --name coriva-crm miteshgupta/coriva:CRMv1.0.2'
+        echo 'docker run -d -p 3333:8080 --name coriva-crm miteshgupta/coriva:CRMv1.0.3'
     fi
 }
 
