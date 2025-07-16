@@ -1,20 +1,19 @@
 {
   "name": "nc-gui",
   "private": true,
-  "packageManager": "pnpm@9.6.0",
-  "description": "NocoDB Frontend",
+  "packageManager": "pnpm@10.11.0",
+  "description": "Coriva CRM Frontend",
   "author": {
-    "name": "NocoDB",
-    "url": "https://nocodb.com/"
+    "name": "Coriva LLC",
+    "url": "https://crm.coriva.tech/"
   },
-  "license": "AGPL-3.0-or-later",
-  "homepage": "https://github.com/nocodb/nocodb",
+  "homepage": "https://github.com/coriva/crm",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nocodb/nocodb.git"
+    "url": "https://github.com/coriva/crm.git"
   },
   "bugs": {
-    "url": "https://github.com/nocodb/nocodb/issues"
+    "url": "https://github.com/coriva/crm/issues"
   },
   "engines": {
     "node": ">=18"

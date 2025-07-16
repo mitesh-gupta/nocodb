@@ -92,7 +92,7 @@ const loadCollaborators = async () => {
     totalCollaborators.value = totalRows
     collaborators.value = [
       ...users
-        .filter((u: any) => !u?.deleted)
+        .filter((u: any) => !u?.deleted && u?.roles !== ProjectRoles.OWNER)
         .map((user: any) => ({
           ...user,
           base_roles: user.roles,

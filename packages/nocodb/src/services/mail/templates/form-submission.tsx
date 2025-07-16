@@ -116,7 +116,7 @@ const FormSubmission = ({
                     </Column>
                   </Row>
                   <Row
-                    className="px-4 py-2 border border-1 mt-2 border-solid rounded-lg border-gray-200"
+                    className="px-4 py-2 border mt-2 border-solid rounded-lg border-gray-200"
                     style={{
                       boxShadow: `0px 0px 4px 0px rgba(0, 0, 0, 0.08)`,
                     }}

@@ -187,7 +187,7 @@ const onCreateSyncClick = () => {
 
 function getSourceIcon(source: SourceType) {
   if (source.is_meta || source.is_local) {
-    return iconMap.nocodb1
+    return iconMap.importExcel
   }
   if (baseStore.isMysql(source.id)) return allIntegrationsMapBySubType[ClientType.MYSQL].icon
   return allIntegrationsMapBySubType[source.type! as ClientType]?.icon ?? null

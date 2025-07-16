@@ -88,8 +88,8 @@ BaseRoleUpdate.PreviewProps = {
   oldRole: 'creator',
   newRole: 'editor',
   name: 'John Doe',
-  email: 'johndoe@nocodb.com',
-  link: 'www.nocodb.com',
+  email: 'johndoe@coriva.tech',
+  link: 'www.coriva.tech',
 };
 
 export default BaseRoleUpdate;

@@ -2243,6 +2243,8 @@ export interface FilterReqType {
       );
   /** Foreign Key to Column */
   fk_column_id?: StringOrNullType;
+  /** Foreign Key to Widget */
+  fk_widget_id?: StringOrNullType;
   /** Belong to which filter ID */
   fk_parent_id?: StringOrNullType;
   /** Is this filter grouped? */

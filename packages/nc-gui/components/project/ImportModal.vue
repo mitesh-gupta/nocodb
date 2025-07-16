@@ -14,8 +14,6 @@ const visible = useVModel(props, 'visible', emits)
 
 const { $e } = useNuxtApp()
 
-const { isFeatureEnabled } = useBetaFeatureToggle()
-
 const { showRecordPlanLimitExceededModal } = useEeConfig()
 
 async function openAirtableImportDialog(baseId?: string, sourceId?: string) {
@@ -32,33 +30,6 @@ async function openAirtableImportDialog(baseId?: string, sourceId?: string) {
     'modelValue': isOpen,
     'baseId': baseId,
     'sourceId': sourceId,
-    'onUpdate:modelValue': closeDialog,
-    'showBackBtn': true,
-    'onBack': () => {
-      visible.value = true
-    },
-  })
-
-  function closeDialog() {
-    isOpen.value = false
-
-    close(1000)
-  }
-}
-
-async function openNocoDbImportDialog(baseId?: string) {
-  if (!baseId) return
-
-  // $e('a:actions:import-nocodb')
-
-  const isOpen = ref(true)
-
-  await nextTick()
-  visible.value = false
-
-  const { close } = useDialog(resolveComponent('DlgNocoDbImport'), {
-    'modelValue': isOpen,
-    'baseId': baseId,
     'onUpdate:modelValue': closeDialog,
     'showBackBtn': true,
     'onBack': () => {
@@ -102,13 +73,11 @@ async function openQuickImportDialog(type: 'csv' | 'excel' | 'json') {
   }
 }
 
-const onClick = (type: 'airtable' | 'csv' | 'excel' | 'json' | 'nocodb') => {
+const onClick = (type: 'airtable' | 'csv' | 'excel' | 'json') => {
   if (showRecordPlanLimitExceededModal()) return
 
   if (type === 'airtable') {
     openAirtableImportDialog(source.value.base_id, source.value.id)
-  } else if (type === 'nocodb') {
-    openNocoDbImportDialog(source.value.base_id)
   } else {
     openQuickImportDialog(type)
   }
@@ -140,11 +109,6 @@ const onClick = (type: 'airtable' | 'csv' | 'excel' | 'json' | 'nocodb') => {
         <NcMenuItem @click="onClick('excel')">
           <GeneralIcon icon="importExcel" class="w-5 h-5" />
           <span class="ml-1 text-[13px] font-weight-700"> {{ $t('labels.excel') }} </span>
-          <GeneralIcon icon="chevronRight" class="ml-auto text-lg" />
-        </NcMenuItem>
-        <NcMenuItem v-if="isFeatureEnabled(FEATURE_FLAG.IMPORT_FROM_NOCODB)" @click="onClick('nocodb')">
-          <GeneralIcon icon="nocodb1" class="w-5 h-5" />
-          <span class="ml-1 text-[13px] font-weight-700"> {{ $t('objects.syncData.nocodb') }} </span>
           <GeneralIcon icon="chevronRight" class="ml-auto text-lg" />
         </NcMenuItem>
         <!-- <NcMenuItem disabled>

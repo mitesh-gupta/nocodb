@@ -24,26 +24,25 @@ export const Welcome = ({ email, link }: WelcomeTemplateProps) => (
   <Html>
     <RootWrapper>
       <Head />
-      <Preview>Welcome to NocoDB!</Preview>
+      <Preview>Welcome to CorivaCRM!</Preview>
       <Body className="bg-white">
         <ContentWrapper>
           <Heading className="text-gray-900 text-center font-bold m-auto text-xl md:text-2xl">
-            Welcome to NocoDB!
+            Welcome to CorivaCRM!
           </Heading>
           <Section className="py-6 mx-auto font-bold text-center text-gray-900 text-base">
             {email}
           </Section>
           <Text className="text-gray-600 text-center text-sm !mt-0">
             We're thrilled to have you on board! 🚀 Turn your databases into
-            powerful smart tables and manage your data the way you want — no
-            code required.
+            powerful smart tables and manage your data the way you want.
           </Text>
           <Text className="text-gray-600 text-center text-sm !mt-0">
             Get started by creating your first project or exploring templates to
             see what’s possible.
           </Text>
           <Text className="text-gray-600 text-center text-sm !mt-0">
-            Need help? Our docs and community are just a click away.
+            Need help? contact us.
           </Text>
           <Text className="text-gray-600 text-center text-sm !mt-0 !mb-6">
             Let’s build something amazing together! 💡
@@ -62,8 +61,8 @@ export const Welcome = ({ email, link }: WelcomeTemplateProps) => (
 );
 
 Welcome.PreviewProps = {
-  email: 'janedoe@nocodb.com',
-  link: 'https://nocodb.com',
+  email: 'janedoe@coriva.tech',
+  link: 'https://coriva.tech',
 };
 
 export default Welcome;

@@ -1551,14 +1551,27 @@ watch(
 )
 
 onMounted(() => {
-  const resizeObserver = new ResizeObserver(() => {
-    refreshFillHandle()
-    if (activeCell.row !== null && !dataRef.value?.[activeCell.row]) {
-      clearSelectedRange()
-      activeCell.row = null
-      activeCell.col = null
+  const debounce = (callback: (...args: any[]) => void, delay: number) => {
+    let tid: any
+    return function (...args: any[]) {
+      clearTimeout(tid)
+      tid = setTimeout(() => {
+        callback(...args)
+      }, delay)
     }
-  })
+  }
+
+  const resizeObserver = new ResizeObserver(
+    debounce(() => {
+      refreshFillHandle()
+      if (activeCell.row !== null && !dataRef.value?.[activeCell.row]) {
+        clearSelectedRange()
+        activeCell.row = null
+        activeCell.col = null
+      }
+    }, 20), // Debounce with a 20ms delay
+  )
+
   if (smartTable.value) resizeObserver.observe(smartTable.value)
   until(scrollWrapper)
     .toBeTruthy()
@@ -2982,6 +2995,7 @@ onKeyStroke('ArrowDown', onDown)
       overflow: hidden;
       @apply flex h-auto;
     }
+
     &.active-cell {
       :deep(.nc-cell) {
         a.nc-cell-field-link {
@@ -2994,6 +3008,7 @@ onKeyStroke('ArrowDown', onDown)
         }
       }
     }
+
     :deep(.nc-cell),
     :deep(.nc-virtual-cell) {
       @apply !text-small;
@@ -3025,6 +3040,7 @@ onKeyStroke('ArrowDown', onDown)
 
       a.nc-cell-field-link {
         @apply !text-current;
+
         &:hover {
           @apply !text-current;
         }
@@ -3068,11 +3084,13 @@ onKeyStroke('ArrowDown', onDown)
         .ant-select-selector {
           @apply !border-none flex-nowrap pr-4.5;
         }
+
         .ant-select-arrow,
         .ant-select-clear {
           @apply right-[3px];
         }
       }
+
       .ant-select-selection-search-input {
         @apply !h-[23px];
       }
@@ -3204,6 +3222,7 @@ onKeyStroke('ArrowDown', onDown)
       @apply !bg-transparent;
     }
   }
+
   td.nc-grid-cell.column-sorted.active {
     @apply !bg-orange-100;
 
@@ -3249,6 +3268,7 @@ onKeyStroke('ArrowDown', onDown)
         &.column-filtered {
           @apply !bg-green-100;
         }
+
         &.column-sorted {
           @apply !bg-orange-100;
         }
@@ -3264,6 +3284,7 @@ onKeyStroke('ArrowDown', onDown)
       &.column-filtered {
         @apply !bg-green-100;
       }
+
       &.column-sorted {
         @apply !bg-orange-100;
       }
@@ -3284,6 +3305,7 @@ onKeyStroke('ArrowDown', onDown)
       &.column-sorted {
         @apply border-b-gray-200 border-r-gray-200;
       }
+
       &:has(+ .column-filtered),
       &:has(+ .column-sorted) {
         @apply border-r-gray-200;
@@ -3342,6 +3364,7 @@ onKeyStroke('ArrowDown', onDown)
 .col-filtered {
   background: var(--nc-background-coloured-green, #ecfff2) !important;
 }
+
 .col-sorted {
   background: var(--nc-background-coloured-marooon, #fff0f7) !important;
 }

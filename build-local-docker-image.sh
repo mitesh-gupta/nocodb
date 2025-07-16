@@ -7,20 +7,20 @@
 #   3a. static build of nc-gui
 #   3b. copy nc-gui build to nocodb dir
 # 4. Build nocodb
-
+ 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 LOG_FILE=${SCRIPT_DIR}/build-local-docker-image.log
 ERROR=""
 
 function stop_and_remove_container() {
     # Stop and remove the existing container
-    docker stop nocodb-local >/dev/null 2>&1
-    docker rm nocodb-local >/dev/null 2>&1
+    docker stop coriva-crm >/dev/null 2>&1
+    docker rm coriva-crm >/dev/null 2>&1
 }
 
 function remove_image() {
     # Remove the existing image
-    docker rmi nocodb-local >/dev/null 2>&1
+    docker rmi miteshgupta/coriva:CRMv1.0.2 >/dev/null 2>&1
 }
 
 function install_dependencies() {
@@ -32,14 +32,9 @@ function install_dependencies() {
 function build_gui() {
     # build nc-gui
     export NODE_OPTIONS="--max_old_space_size=16384"
-    # generate static build of nc-gui
+    # generate static build of nc-gui and copy that build files to nc-lib-gui
     cd ${SCRIPT_DIR}/packages/nc-gui
-    pnpm run generate || ERROR="gui build failed"
-}
-
-function copy_gui_artifacts() {
-     # copy nc-gui build to nocodb dir
-    rsync -rvzh --delete ./dist/ ${SCRIPT_DIR}/packages/nocodb/docker/nc-gui/ || ERROR="copy_gui_artifacts failed"
+    pnpm nuxt generate; rm -rf ../nc-lib-gui/lib/dist/; rsync -rvzh ./dist/ ../nc-lib-gui/lib/dist/ || ERROR="gui build failed"
 }
 
 function package_nocodb() {
@@ -50,7 +45,8 @@ function package_nocodb() {
 
 function build_image() {
     # build docker
-    docker build . -f Dockerfile.local -t nocodb-local || ERROR="build_image failed"
+    cd ${SCRIPT_DIR}
+    docker build --no-cache . -f packages/nocodb/Dockerfile.local -t miteshgupta/coriva:CRMv1.0.2 || ERROR="build_image failed"
 }
 
 function log_message() {
@@ -60,8 +56,8 @@ function log_message() {
         >&2 echo "ERROR: ${ERROR}"
         exit 1
     else
-        echo 'docker image with tag "nocodb-local" built sussessfully. Use below sample command to run the container'
-        echo 'docker run -d -p 3333:8080 --name nocodb-local nocodb-local '
+        echo 'docker image with tag "miteshgupta/coriva" built sussessfully. Use below sample command to run the container'
+        echo 'docker run -d -p 3333:8080 --name coriva-crm miteshgupta/coriva:CRMv1.0.2'
     fi
 }
 

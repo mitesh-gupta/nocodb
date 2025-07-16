@@ -121,8 +121,6 @@ onMounted(async () => {
         <div
           class="bg-white mt-[60px] relative flex flex-col justify-center gap-2 w-full max-w-[500px] mx-auto p-8 md:(rounded-lg border-1 border-gray-200 shadow-xl)"
         >
-          <LazyGeneralNocoIcon class="color-transition hover:(ring ring-accent ring-opacity-100)" :animate="isLoading" />
-
           <h1 class="prose-2xl font-bold self-center my-4">
             {{ $t('general.signUp') }}
             {{ $route.query.redirect_to === '/referral' ? '& REFER' : '' }}
@@ -211,15 +209,6 @@ onMounted(async () => {
                 </a>
               </div>
 
-              <div v-if="!appInfo.disableEmailAuth" class="flex items-center gap-2">
-                <a-switch
-                  v-model:checked="subscribe"
-                  size="small"
-                  class="my-1 hover:(ring ring-accent ring-opacity-100) focus:(!ring !ring-accent ring-opacity-100)"
-                />
-                <div class="prose-xs text-gray-500">{{ $t('msg.subscribeToOurWeeklyNewsletter') }}</div>
-              </div>
-
               <div class="text-end prose-sm">
                 {{ $t('msg.info.signUp.alreadyHaveAccount') }}
 
@@ -227,13 +216,6 @@ onMounted(async () => {
               </div>
             </div>
           </a-form>
-        </div>
-
-        <div class="prose-sm mt-4 text-gray-500">
-          {{ $t('msg.bySigningUp') }}
-          <a class="prose-sm !text-gray-500 underline" target="_blank" href="https://nocodb.com/policy-nocodb" rel="noopener">
-            {{ $t('title.termsOfService') }}</a
-          >
         </div>
       </div>
     </NuxtLayout>

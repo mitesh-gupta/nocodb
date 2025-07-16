@@ -291,19 +291,14 @@ watch(activeViewTab, (value) => {
             >
               <div class="flex-1">
                 <div class="text-sm font-normal text-gray-600 mb-2">
-                  <div>
-                    {{ $t('msg.connectIntegrations') }}
-                    <a href="https://nocodb.com/docs/product-docs/integrations" target="_blank" rel="noopener noreferrer">{{
-                      $t('msg.learnMore')
-                    }}</a>
-                  </div>
+                  <div>Connect integrations with CRM.</div>
                 </div>
                 <div class="flex items-center gap-2 !max-w-[400px]">
                   <a-input
                     v-if="easterEggToggle"
                     v-model:value="searchQuery"
                     type="text"
-                    class="flex-1 nc-input-border-on-value nc-search-integration-input !min-w-[300px] nc-input-sm flex-none"
+                    class="flex-1 nc-input-border-on-value nc-search-integration-input !min-w-[300px] nc-input-sm"
                     placeholder="Search integration"
                     allow-clear
                   >

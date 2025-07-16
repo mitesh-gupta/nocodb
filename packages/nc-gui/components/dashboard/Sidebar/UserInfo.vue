@@ -140,103 +140,9 @@ const accountUrl = computed(() => {
                 <span class="menu-btn"> {{ $t('general.logout') }}</span>
               </div>
             </NcMenuItem>
-            <NcDivider v-if="!isMiniSidebar" />
-            <a
-              v-if="!isMiniSidebar"
-              v-e="['c:nocodb:discord']"
-              href="https://discord.gg/5RgZmkW"
-              target="_blank"
-              class="!underline-transparent"
-              rel="noopener noreferrer"
-            >
-              <NcMenuItem class="social-icon-wrapper">
-                <GeneralIcon class="social-icon" icon="ncDiscord" />
-                <span class="menu-btn"> {{ $t('labels.community.joinDiscord') }} </span>
-              </NcMenuItem>
-            </a>
-            <a
-              v-if="!isMiniSidebar"
-              v-e="['c:nocodb:reddit']"
-              href="https://www.reddit.com/r/NocoDB"
-              target="_blank"
-              class="!underline-transparent"
-              rel="noopener noreferrer"
-            >
-              <NcMenuItem class="social-icon-wrapper">
-                <GeneralIcon class="social-icon" icon="ncReddit" />
-                <span class="menu-btn"> {{ $t('labels.community.joinReddit') }} </span>
-              </NcMenuItem>
-            </a>
-            <a
-              v-if="!isMiniSidebar"
-              v-e="['c:nocodb:twitter']"
-              href="https://twitter.com/nocodb"
-              target="_blank"
-              class="!underline-transparent"
-              rel="noopener noreferrer"
-            >
-              <NcMenuItem class="social-icon-wrapper group">
-                <GeneralIcon class="social-icon text-gray-500 group-hover:text-gray-800" icon="ncTwitter" />
-                <span class="menu-btn"> {{ $t('labels.twitter') }} </span>
-              </NcMenuItem>
-            </a>
-            <NcDivider />
-            <a-popover
-              key="language"
-              class="lang-menu !py-1.5"
-              placement="rightBottom"
-              overlay-class-name="nc-lang-menu-overlay !z-1050"
-            >
-              <NcMenuItem inner-class="w-full">
-                <div v-e="['c:translate:open']" class="flex gap-2 items-center w-full">
-                  <GeneralIcon icon="translate" class="group-hover:text-black nc-language ml-0.25 menu-icon" />
-                  {{ $t('labels.language') }}
-                  <div class="flex items-center text-gray-400 text-xs">{{ $t('labels.community.communityTranslated') }}</div>
-                  <div class="flex-1" />
-
-                  <GeneralIcon icon="ncChevronRight" class="flex-none !text-gray-500" />
-                </div>
-              </NcMenuItem>
-
-              <template #content>
-                <div class="bg-white max-h-50vh min-w-64 mb-1 nc-scrollbar-thin -mr-1.5 pr-1.5">
-                  <LazyGeneralLanguageMenu />
-                </div>
-              </template>
-            </a-popover>
 
             <template v-if="!isMobileMode">
               <NcDivider />
-
-              <template v-if="!isMiniSidebar">
-                <a
-                  v-e="['c:nocodb:forum-open']"
-                  href="https://community.nocodb.com"
-                  target="_blank"
-                  class="!underline-transparent"
-                  rel="noopener"
-                >
-                  <NcMenuItem>
-                    <GeneralIcon icon="ncHelp" class="menu-icon mt-0.5" />
-                    <span class="menu-btn"> {{ $t('title.forum') }} </span>
-                  </NcMenuItem>
-                </a>
-
-                <a
-                  v-e="['c:nocodb:docs-open']"
-                  href="https://nocodb.com/docs/product-docs"
-                  target="_blank"
-                  class="!underline-transparent"
-                  rel="noopener"
-                >
-                  <NcMenuItem>
-                    <GeneralIcon icon="file" class="menu-icon mt-0.5" />
-                    <span class="menu-btn"> {{ $t('title.docs') }} </span>
-                  </NcMenuItem>
-                </a>
-
-                <NcDivider />
-              </template>
 
               <DashboardSidebarEEMenuOption v-if="isEeUI" />
               <NcMenuItem @click="openExperimentationMenu">
@@ -267,15 +173,7 @@ const accountUrl = computed(() => {
           </NcMenu>
         </template>
       </NcDropdown>
-      <LazyNotificationMenu v-if="!isMiniSidebar" />
     </div>
-
-    <template v-if="!isMiniSidebar">
-      <template v-if="isMobileMode || appInfo.ee"></template>
-      <div v-else class="flex flex-row w-full justify-between pt-0.5 truncate">
-        <GeneralJoinCloud />
-      </div>
-    </template>
   </div>
 </template>
 
@@ -283,6 +181,7 @@ const accountUrl = computed(() => {
 .menu-btn {
   line-height: 1.5;
 }
+
 .menu-icon {
   @apply w-4 h-4;
   font-size: 1rem;

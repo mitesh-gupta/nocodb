@@ -50,11 +50,8 @@ export default defineNuxtConfig({
     cdnURL: process.env.NODE_ENV === 'production' ? process.env.NC_CDN_URL || '.' : undefined,
     head: {
       link: [
-        {
-          rel: 'icon',
-          type: 'image/x-icon',
-          href: './favicon.ico',
-        },
+        { rel: 'icon', type: 'image/x-icon', href: './favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '500x500', href: './apple-touch-icon.png' },
 
         ...(process.env.NC_CDN_URL
           ? [
@@ -78,27 +75,28 @@ export default defineNuxtConfig({
         {
           hid: 'description',
           name: 'description',
-          content: process.env.npm_package_description || '',
+          content:
+            'CorivaCRM is a modern, cloud based CRM platform designed to help businesses manage their customer relationships effectively.',
         },
         // Open Graph
-        { hid: 'og:site_name', property: 'og:site_name', content: 'NocoDB' },
+        { hid: 'og:site_name', property: 'og:site_name', content: 'CorivaCRM' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
-        { hid: 'og:title', property: 'og:title', content: 'NocoDB' },
+        { hid: 'og:title', property: 'og:title', content: 'CorivaCRM' },
         {
           hid: 'og:description',
           property: 'og:description',
           content:
-            'NocoDB provides an intuitive spreadsheet interface for creating online databases, either from scratch or by connecting to any Postgres/MySQL. Access your data through interactive UIs or via API and SQL. Get started for free.',
+            'CorivaCRM is a modern, cloud based CRM platform designed to help businesses manage their customer relationships effectively.',
         },
-        { hid: 'og:url', property: 'og:url', content: 'https://nocodb.com' },
+        { hid: 'og:url', property: 'og:url', content: 'https://coriva.tech' },
         // Twitter
         { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-        { hid: 'twitter:title', name: 'twitter:title', content: 'NocoDB' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'CorivaCRM' },
         {
           hid: 'twitter:description',
           name: 'twitter:description',
           content:
-            'NocoDB provides an intuitive spreadsheet interface for creating online databases, either from scratch or by connecting to any Postgres/MySQL. Access your data through interactive UIs or via API and SQL. Get started for free.',
+            'CorivaCRM is a modern, cloud based CRM platform designed to help businesses manage their customer relationships effectively.',
         },
         {
           hid: 'twitter:image',

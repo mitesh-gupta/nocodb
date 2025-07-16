@@ -46,16 +46,7 @@ onUnmounted(() => {
       <DashboardTreeViewProjectList>
         <template #footer>
           <div v-if="!isSharedBase" class="nc-sidebar-bottom-section">
-            <PaymentUpgradeSidebarBanner v-if="isEeUI" />
-            <LazyGeneralMaintenanceAlert />
-
-            <GeneralGift v-if="!isEeUI" />
-
             <DashboardSidebarBeforeUserInfo />
-            <div v-if="!isMobileMode && !appInfo.ee" class="flex flex-row w-full justify-between pt-0.5 truncate">
-              <GeneralJoinCloud />
-            </div>
-            <DashboardSidebarVersion v-if="appInfo.isOnPrem" />
           </div>
         </template>
       </DashboardTreeViewProjectList>
@@ -78,17 +69,10 @@ onUnmounted(() => {
         <DashboardTreeView v-if="!isWorkspaceLoading" />
       </div>
       <div v-if="!isSharedBase" class="nc-sidebar-bottom-section">
-        <PaymentUpgradeSidebarBanner v-if="isEeUI" />
-
-        <GeneralGift v-if="!isEeUI" />
         <DashboardSidebarBeforeUserInfo />
-        <DashboardSidebarFeed v-if="appInfo.feedEnabled" />
         <DashboardSidebarUserInfo />
-        <DashboardSidebarVersion v-if="appInfo.isOnPrem" />
       </div>
     </template>
-
-    <DlgUpgradeWs v-if="upgradeWsJobId" v-model="upgradeWsDlg" :job-id="upgradeWsJobId" />
   </div>
 </template>
 

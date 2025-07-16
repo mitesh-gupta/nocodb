@@ -113,45 +113,6 @@ const isPending = computed(() => !emailConfigured.value || !storageConfigured.va
                   <div class="select-none">{{ $t('labels.profile') }}</div>
                 </div>
               </NcMenuItem>
-              <NcMenuItem
-                key="tokens"
-                class="item"
-                :class="{
-                  active: $route.params.page === 'tokens',
-                }"
-                @click="navigateTo('/account/tokens')"
-              >
-                <div class="flex items-center space-x-2">
-                  <MdiShieldKeyOutline />
-
-                  <div class="select-none">{{ $t('title.tokens') }}</div>
-                </div>
-              </NcMenuItem>
-              <NcMenuItem
-                v-if="isUIAllowed('superAdminAppStore') && !isEeUI"
-                key="apps"
-                class="item w-full"
-                :class="{
-                  active: $route.params.page === 'apps',
-                }"
-                @click="navigateTo('/account/apps')"
-              >
-                <div class="flex items-center gap-2 w-full">
-                  <component :is="iconMap.appStore" />
-
-                  <div class="select-none text-sm">{{ $t('title.appStore') }}</div>
-                  <span class="flex-grow" />
-                  <NcToolti>
-                    <template #title>
-                      <span>
-                        App store will soon be removed. Email & Storage plugins are now available in Accounts/Setup page. Rest of
-                        the plugins here will be moved to integrations.
-                      </span>
-                    </template>
-                    <GeneralIcon icon="ncAlertCircle" class="text-orange-500 w-4 h-4 nc-pending" />
-                  </NcToolti>
-                </div>
-              </NcMenuItem>
               <a-sub-menu key="users" class="!bg-white !my-0">
                 <template #icon>
                   <GeneralIcon icon="ncUsers" class="!h- !w-4" />
@@ -211,16 +172,6 @@ const isPending = computed(() => !emailConfigured.value || !storageConfigured.va
               <div class="flex-1">
                 <LazyAccountBreadcrumb />
               </div>
-
-              <LazyGeneralReleaseInfo />
-
-              <NcTooltip placement="bottom" class="mr-4">
-                <template #title>{{ $t('labels.community.communityTranslated') }}</template>
-
-                <div class="flex items-center">
-                  <LazyGeneralLanguage button class="cursor-pointer text-2xl hover:text-gray-800" />
-                </div>
-              </NcTooltip>
 
               <template v-if="signedIn">
                 <NcDropdown :trigger="['click']" overlay-class-name="nc-dropdown-user-accounts-menu">

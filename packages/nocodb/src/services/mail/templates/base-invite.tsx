@@ -61,8 +61,8 @@ export const BaseInvite = ({
 BaseInvite.PreviewProps = {
   baseTitle: 'Base Title',
   name: 'John Doe',
-  email: 'johndoe@nocodb.com',
-  link: 'https://app.nocodb.com',
+  email: 'johndoe@coriva.tech',
+  link: 'https://crm.coriva.tech',
 };
 
 export default BaseInvite;
